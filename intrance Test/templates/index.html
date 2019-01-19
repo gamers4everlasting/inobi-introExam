@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<header class="navbar">
+  <form action="/upload" method="post" enctype="multipart/form-data" >
+      <span class="btn btn-default btn-file">
+        Browse <input type="file" name="image">
+      </span>
+
+      <label for="tentacles">Number of slices (2-9):</label>
+
+      <input type="number" id="tentacles" name="tentacles"
+       min="2" max="9">
+    <input type="submit" value="Upload your image" class="btn btn-primary">
+  </form>
+
+</header>
+{% endblock %}

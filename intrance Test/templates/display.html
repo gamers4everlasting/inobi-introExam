@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% include "index.html" %}
+
+{% block content %}
+
+<form action="/return_file" method="post" >
+
+  <div class="row">
+
+       <div class="col-lg-12">
+           <h1 class="page-header">Thumbnails</h1>
+           <h3>click on image to add to Zip</h3>
+       </div>
+       {{file}}
+
+         <div>
+           {% if image_added %}
+                  {% for pic_name in f %}
+                <hr>
+                <h2> {{pic_name}} is added to ZIP</h2>
+                <hr>
+                {% endfor %}
+           {% endif %}
+        </div>
+
+       <div class='container'>
+          {% for file in files %}
+             <div class='container_img'>
+                  <a href="{{url_for('add_image', file=file.filename)}}" target="_blank"> <img class="imgItem" src="{{url_for('send_image', filename=file.filename)}}"  width="50%" height="50%" "> </a>
+             </div>
+           {% endfor %}
+       </div>
+   </div>
+  </form>
+   <form action="/save_zip" method="post" >
+     <input type="text" name="zipName" value="enter Zip file name">
+     <input type="submit" value="Save images in ZIP" class="btn btn-primary">
+   </form>
+
+
+ {% endblock %}
